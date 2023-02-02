@@ -3,8 +3,11 @@ const screens = document.querySelectorAll('.screen')
 const timeList = document.querySelector('#time-list')
 const timeEl = document.querySelector('#time')
 const board = document.querySelector('#board')
-let time = 11
+let time = 0
 let scor = 0
+
+
+
 
 startBtn.addEventListener('click', (event) => {
     event.preventDefault()
@@ -27,7 +30,6 @@ board.addEventListener('click', event => {
     }
 })
 
-startGame()
 
 function startGame() {
     setInterval(decreaseTime, 1000)
@@ -53,7 +55,8 @@ function setTime(value) {
 }
 
 function finishGame() {
-
+    timeEl.parentNode.classList.add('hide')
+    board.innerHTML = `<h1>Your Scror: <span class="primary">${scor}</span></h1>`
 }
 
 function createPandomCircle() {
@@ -63,13 +66,24 @@ function createPandomCircle() {
     const x = getRandomNumber(0, width - size)
     const y = getRandomNumber(0, height - size)
 
+    
     circle.classList.add('circle')
     circle.style.width = `${size}px`
     circle.style.height = `${size}px`
     circle.style.top = `${y}px`
     circle.style.left = `${x}px`
+    circle.style.background = generetRandomColor()
 
     board.append(circle)
+}
+
+function generetRandomColor(){
+    const hexCodes = '0123456789ABCDEF'
+    let color = ''
+    for(let i = 0; i < 6; i++){
+        color += hexCodes[Math.floor(Math.random() * hexCodes.length)]
+    }
+    return '#' + color
 }
 
 function getRandomNumber(min, max) {
