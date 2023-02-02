@@ -2,6 +2,7 @@ const startBtn = document.querySelector('#start')
 const screens = document.querySelectorAll('.screen')
 const timeList = document.querySelector('#time-list')
 const timeEl = document.querySelector('#time')
+const board = document.querySelector('#board')
 let time = 11
 
 startBtn.addEventListener('click', (event) => {
@@ -21,6 +22,7 @@ startGame()
 
 function startGame() {
     setInterval(decreaseTime, 1000)
+    createPandomCircle()
     setTime(time)
 }
 
@@ -43,5 +45,15 @@ function setTime(value) {
 
 function finishGame() {
 
+}
+
+function createPandomCircle() {
+    const circle = document.createElement('div')
+
+    circle.classList.add('circle')
+    circle.style.width = '15px'
+    circle.style.height = '15px'
+
+    board.append(circle)
 }
 
