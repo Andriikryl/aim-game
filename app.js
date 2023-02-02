@@ -4,6 +4,7 @@ const timeList = document.querySelector('#time-list')
 const timeEl = document.querySelector('#time')
 const board = document.querySelector('#board')
 let time = 11
+let scor = 0
 
 startBtn.addEventListener('click', (event) => {
     event.preventDefault()
@@ -15,6 +16,14 @@ timeList.addEventListener('click', event => {
        time = parseInt(event.target.getAttribute('data-time'))
        screens[1].classList.add('up')
        startGame()
+    }
+})
+
+board.addEventListener('click', event => {
+    if (event.target.classList.contains('circle')){
+        scor++
+        event.target.remove()
+        createPandomCircle()
     }
 })
 
